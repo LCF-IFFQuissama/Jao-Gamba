@@ -30,25 +30,77 @@ window.addEventListener('load',function(e) {
     // Elements in containers move relative to
     // container so (0,0) is the center of the container
     stage.insert(new Q.UI.Text({ 
-      label: "Onde em Quissamã está",
+      label: "Você está em:",
       color: "white",
-      y: 0
+      y: 0,
+      x: -55
     }),container);
 
     stage.insert(new Q.UI.Text({ 
-      label: "João Gambá?",
+      label: "<local>",
       color: "orange",
-      y: 30
+      y: 0,
+      x: 70
+    }),container);
+
+
+    // Buttons inherit from containers and so can
+    // have fills and borders as well
+    stage.insert(new Q.UI.Button({
+      label: "Investigação",
+      y: 60,
+      x: -60,
+      fill: "#990000",
+      border: 5,
+    }, function() {
+      this.p.label = "#goGamba";
     }),container);
 
     // Buttons inherit from containers and so can
     // have fills and borders as well
     stage.insert(new Q.UI.Button({
-      label: "Iniciar jogo",
-      y: 350,
+      label: "Vilões",
+      y: 60,
+      x: 95,
       fill: "#990000",
       border: 5,
+    }, function() {
+      this.p.label = "#gogo";
+    }),container);
 
+
+    // Buttons inherit from containers and so can
+    // have fills and borders as well
+    stage.insert(new Q.UI.Button({
+      label: "Informações sobre local",
+      y: 120,
+      x: 0,
+      fill: "green",
+      border: 5,
+    }),container);
+
+
+    // Buttons inherit from containers and so can
+    // have fills and borders as well
+    stage.insert(new Q.UI.Button({
+      label: "Pistas",
+      y: 350,
+      x: -95,
+      fill: "#990000",
+      border: 5,
+    }, function() {
+      this.p.label = "#gogo";
+    }),container);
+
+
+    // Buttons inherit from containers and so can
+    // have fills and borders as well
+    stage.insert(new Q.UI.Button({
+      label: "Mudar de lugar",
+      y: 350,
+      x: 50,
+      fill: "#990000",
+      border: 5,
     }, function() {
       this.p.label = "#goGamba";
     }),container);
@@ -56,6 +108,12 @@ window.addEventListener('load',function(e) {
     // Call container.fit to expand a container
     // to fit all the elemnt in it
     container.fit(20,20);
+
+
+    // Call container.fit to expand a container
+    // to fit all the elemnt in it
+    container.fit(20,20);
+
 
   });
 
