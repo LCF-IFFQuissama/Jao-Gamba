@@ -51,6 +51,8 @@ window.addEventListener('load',function(e) {
 
     }, function() {
       this.p.label = "#goGamba";
+      alert("YeahJoãoGambá");
+      //Pode chamar qualquer coisa aqui
     }),container);
 
     // Call container.fit to expand a container
