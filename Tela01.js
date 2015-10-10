@@ -19,9 +19,9 @@ window.addEventListener('load',function(e) {
     var container = stage.insert(new Q.UI.Container({
       fill: "gray",
       border: 5,
-      shadow: 10,
-      shadowColor: "rgba(0,0,0,0.5)",
-      y: 50,
+      //shadow: 10,
+      //shadowColor: "rgba(0,0,0,0.5)",
+      y: 100,
       x: Q.width/2 
     }));
 
@@ -31,59 +31,34 @@ window.addEventListener('load',function(e) {
     // Elements in containers move relative to
     // container so (0,0) is the center of the container
     stage.insert(new Q.UI.Text({ 
-      label: "Here's a label\nin a container",
+      label: "Onde em Quissamã está",
       color: "white",
-      x: 0,
       y: 0
+    }),container);
+
+    stage.insert(new Q.UI.Text({ 
+      label: "João Gambá?",
+      color: "orange",
+      y: 30
+    }),container);
+
+    // Buttons inherit from containers and so can
+    // have fills and borders as well
+    stage.insert(new Q.UI.Button({
+      label: "Iniciar jogo",
+      y: 200,
+      fill: "#990000",
+      border: 5,
+      shadow: 10,
+      shadowColor: "rgba(0,0,0,0.5)",
+    }, function() {
+      this.p.label = "#goGamba";
     }),container);
 
     // Call container.fit to expand a container
     // to fit all the elemnt in it
     container.fit(20,20);
 
-    // You can create buttons, which just default
-    // to text labels and take a second init argument
-    // which is a on click callback
-    stage.insert(new Q.UI.Button({
-      label: "A Button",
-      y: 150,
-      x: Q.width/2
-    }, function() {
-      this.p.label = "Pressed";
-    }));
-
-    // Buttons inherit from containers and so can
-    // have fills and borders as well
-    stage.insert(new Q.UI.Button({
-      label: "Another Button",
-      y: 200,
-      x: Q.width/2,
-      fill: "#990000",
-      border: 5,
-      shadow: 10,
-      shadowColor: "rgba(0,0,0,0.5)",
-    }, function() {
-      this.p.label = "Pressed";
-    }));
-
-    stage.insert(new Q.UI.Text({ 
-      label: "Image below is a\n button using an asset",
-      color: "black",
-      align: 'center',
-      x: Q.width/2,
-      y: 280
-    }));
-
-    // Buttons can also have assets or sheets
-    // and will render themselves as images
-    stage.insert(new Q.UI.Button({
-      asset: 'enemy.png',
-      x: Q.width/2,
-      scale: 0.5,
-      y: 370
-    }, function() {
-      this.p.angle += 90;
-    }));
   });
 
 
