@@ -41,7 +41,7 @@
                     }
                     if ((contadorFase == "fase1") && (Q.inputs['letraA']))
                     {
-                        contadorFase = "Fase"+ Math.floor((Math.random() * 6) + 1) + "";
+                        contadorFase = "Fase2";
                         Q.stageScene("level"+ contadorFase.charAt(4) +"");
                         Q.stageScene("dialogo", 1);
                         Q.stageScene("menu", 2);
@@ -416,7 +416,7 @@
                 }
                 if(contadorFase == "Fase4"){
                     var destino4 = stage.insert(new Q.UI.Text({
-                        label: "D - Restart",
+                        label: "D - Reiniciar",
                         color: "black",
                         x: 0,
                         y: -50
@@ -444,7 +444,7 @@
                 }), menu2);
                     var Restart = stage.insert(new Q.UI.Button({
                     fill: "gray",
-                    label:"Restart",
+                    label:"Reiniciar",
                     x: 1250 / 2 - 150,
                     y: 400,
                     border: 1,
