@@ -60,7 +60,7 @@
                                 Q.stageScene("menu", 2);
                             }
                         }
-                        if(Game_over =="erro1")
+                        else if(Game_over =="erro1")
                         {
                             if (Q.inputs['letraG'])
                             {
@@ -216,7 +216,7 @@
                     }
                     
                     //////////////////-------////////////////////////////////////-----------------------------------------------------------////////////////////////////////
-                    if(contadorFase == "ErroIgre" || contadorFase == "ErroJuru" || contadorFase == "ErroMP" || contadorFase == "ErroSobrad" || contadorFase == "ErroMuseu" || contadorFase == "Fase4")
+                    if(contadorFase.charAt(0) == "E" || contadorFase == "Fase4")
                     {
 
                         if (Q.inputs['letraD'] && contadorFase == "Fase4")
@@ -405,7 +405,7 @@
                 }
 
                 //////////////////////////////////////=============Opção 4=============/////////////////////////////=================////////////////
-                if(contadorFase == "ErroIgre" || contadorFase == "ErroJuru" || contadorFase == "ErroMP" || contadorFase == "ErroSobrad" || contadorFase == "ErroMuseu")
+                if(contadorFase.charAt(0) == "E")
                 {
                     var destino4 = stage.insert(new Q.UI.Text({
                         label: "D - Voltar",
