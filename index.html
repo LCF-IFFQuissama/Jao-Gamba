@@ -18,7 +18,28 @@
         <script>
             var Game_over = "sem erro";
             var contadorFase = "fase1";
+            var diferent = true;
             var MusicaTocando = true;
+            var MusicStatus = "Música: ON";
+            var opcoes = ['letraA', /*'letraB',*/ /*'letraC',*/ /*'letraD',*/ 'letraE', 'letraF', /*'letraG',*/ 'letraH', /*'letraI',*/ /*'letraJ',*/ 'letraK', /*(NR)'letraL', (NR)'letraM', (NR)'letraN', (NR)'letraO', (NR)'letraP', (NR)'letraQ', (NR)'letraS', (NR)'letraT', (NR)'letraU', (NR)'letraV', (NR)'letraX', (NR)'letraW', (NR)'letraZ'*/];
+            var opcoesL = ['A', /*'B',*/ /*'C',*/ /*'D',*/ 'E', 'F', /*'G',*/ 'H', /*'I',*/ /*'J',*/ 'K', /*(NR)'L', (NR)'M', (NR)'N', (NR)'O', (NR)'P', (NR)'Q', (NR)'S', (NR)'T', (NR)'U', (NR)'V', (NR)'X', (NR)'W', (NR)'Z'*/];
+            var opc1 =[Math.floor(Math.random()* (/*23*/4 - 0) + 1), Math.floor(Math.random()* (/*23*/4 - 0) + 1), Math.floor(Math.random()* (/*23*/4 - 0) + 1)];
+            if(opc1[0] == opc1[1] || opc1[0] == opc1[2] || opc1[1] == opc1[2]){
+                while(diferent){
+                    if(opc1[0] == opc1[1]){
+                        opc1[1] = Math.floor(Math.random()* (/*23*/4 - 0) + 1);
+                    }
+                    if(opc1[0] == opc1[2]){
+                        opc1[2] = Math.floor(Math.random()* (/*23*/4 - 0) + 1);
+                    }
+                    if(opc1[1] == opc1[2]){
+                        opc1[2] = Math.floor(Math.random()* (/*23*/4 - 0) + 1);
+                    }
+                    if(opc1[0] != opc1[1] && opc1[0] != opc1[2] && opc1[1] && opc1[2]){
+                        diferent = false;
+                    }
+                }
+            }
             var Q = Quintus({ audioSupported: [ 'mp3' ] })
                     .include("Sprites, Scenes, Input, 2D, Touch, UI, Audio")
                     .enableSound()
@@ -39,7 +60,7 @@
                     if (Q.inputs['right'] && this.p.direction == 'left') {
                         this.p.flip = false;
                     }
-                    if ((contadorFase == "fase1") && (Q.inputs['letraA']))
+                    if ((contadorFase == "fase1") && (Q.inputs[opcoes[opc1[0]]]))
                     {
                         contadorFase = "Fase2";
                         Q.stageScene("level"+ contadorFase.charAt(4) +"");
@@ -146,7 +167,7 @@
                     ///////////////////////////////////////////----------------------------fase 2--------------------------------------/////////////////////////////////    
                     if (contadorFase == "Fase2")
                     {
-                        if (Q.inputs['letraH'])
+                        if (Q.inputs[opcoes[opc1[1]]])
                         {
                             contadorFase = "Fase3";
                             Q.stageScene("level5");
@@ -157,7 +178,7 @@
                     //////////////////////////////////////-----------------------------fase 3------------------------------------/////////////////////////////////////////
                     if (contadorFase == "Fase3")
                     {
-                        if (Q.inputs['letraK'])
+                        if (Q.inputs[opcoes[opc1[2]]])
                         {
                             contadorFase = "Fase4";
                             Q.stageScene("level4");
@@ -266,7 +287,7 @@
                 //Botão Musica
                 var Music = stage.insert(new Q.UI.Button({
                     fill: "gray",
-                    label:"Música: ON",
+                    label: MusicStatus,
                     x: 2050 / 2 - 150,
                     y: 30,
                     border: 1,
@@ -279,10 +300,12 @@
                             Q.audio.stop("laconicgranny.mp3");
                             MusicaTocando = false;
                             this.p.label = "Música: OFF";
+                            MusicStatus = "Música: OFF";
                         }else if (MusicaTocando == false){
                             Q.audio.play('laconicgranny.mp3',{ loop: true });
                             MusicaTocando = true;
                             this.p.label = "Música: ON";
+                            MusicStatus = "Música: ON";
                         }
                     }));
             });
@@ -324,7 +347,7 @@
                 if (contadorFase == "fase1")
                 {
                     var destino1 = stage.insert(new Q.UI.Text({
-                        label: "A - Sobradinho",
+                        label: ""+ opcoesL[opc1[0]] +" - Sobradinho",
                         color: "black",
                         x: 0,
                         y: -65
@@ -360,7 +383,7 @@
                 }
                 if (contadorFase == "Fase2") { //opção correta
                     var destino2 = stage.insert(new Q.UI.Text({
-                        label: "H - Usina",
+                        label: ""+ opcoesL[opc1[1]] +" - Usina",
                         color: "black",
                         x: 0,
                         y: -40
@@ -396,7 +419,7 @@
                 }
                 if (contadorFase == "Fase3") {
                     var destino3 = stage.insert(new Q.UI.Text({
-                        label: "K - Jurubatiba",
+                        label: ""+ opcoesL[opc1[2]] +" - Jurubatiba",
                         color: "black",
                         x: 0,
                         y: -15
@@ -461,6 +484,7 @@
                         if (MusicaTocando == false){
                             Q.audio.play("laconicgranny.mp3");
                             MusicaTocando = true;
+                            MusicStatus = "Música: ON";
                         }
                     }));
                      //Botão Musica
@@ -794,8 +818,9 @@
                 stage.collisionLayer(new Q.TileLayer({dataAsset: 'level2.tmx', layerIndex: 1, sheet: 'tiles', tileW: 70, tileH: 70}));
                 //setupLevel("level2",stage);
 
+                //carrega o sobradinho e as testemunhas
                 var levelAssets = [
-                    ["sobradinho", {x: 10 * 70, y: 411, asset: "sobradinho2.png", points: "[[0,0],[1,1]]"}], //carrega o sobradinho e as testemunhas
+                    ["sobradinho", {x: 10 * 70, y: 411, asset: "sobradinho2.png", points: "[[0,0],[1,1]]"}], 
                     ["testemunha01", {x: 18 * 70, y: 6 * 70, asset: "testemunha1.png"}],
                     ["testemunha02", {x: 5 * 70, y: 6 * 70, asset: "testemunha2.png"}],
                     ["testemunha03", {x: 12 * 70, y: 120, asset: "testemunha3.png"}]
